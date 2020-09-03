@@ -1,2 +1,2 @@
 # Data Methods 
-## Methods of Data Production and Collection
+## Methods of Data Collection and Production
