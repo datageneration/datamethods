@@ -2,10 +2,12 @@
 # Use vignette("auth", package = "rtweet") for authentication
 # Documentation: vignette("quickstart", package = "quanteda")
 # Website: https://quanteda.io/
+install.packages(c("quanteda","quanteda.textmodels","quanteda.textplots","quanteda.textstats"))
 
 library(quanteda)
 library(quanteda.textmodels)
 library(quanteda.textplots)
+library(quanteda.textstats)
 library(readr)
 library(ggplot2)
 # Twitter data about President Biden and Xi summit in Novemeber 2021
@@ -28,7 +30,8 @@ head(tweet_dfm)
 tag_dfm <- dfm_select(tweet_dfm, pattern = "#*")
 toptag <- names(topfeatures(tag_dfm, 50))
 head(toptag, 10)
-library("quanteda.textplots")
+
+
 tag_fcm <- fcm(tag_dfm)
 head(tag_fcm)
 topgat_fcm <- fcm_select(tag_fcm, pattern = toptag)
@@ -92,7 +95,6 @@ g + aes(color = keyword) +
   theme(legend.position = "none")
 
 
-library("quanteda.textstats")
 features_dfm_inaug <- textstat_frequency(dfm_inaug, n = 100)
 
 # Sort by reverse frequency order
@@ -175,7 +177,7 @@ textplot_keyness(result_keyness)
 textplot_keyness(result_keyness, show_reference = FALSE)
 
 
-library("quanteda.textmodels")
+
 
 # Transform corpus to dfm
 data(data_corpus_irishbudget2010, package = "quanteda.textmodels")
@@ -209,7 +211,6 @@ textplot_scale1d(pred_lbg, margin = "documents",
 
 
 # Estimate Wordfish model
-library("quanteda.textmodels")
 wf <- textmodel_wordfish(dfm(tokens(data_corpus_irishbudget2010)), dir = c(6, 5))
 
 # Plot estimated word positions
